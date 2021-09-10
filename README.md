@@ -1,8 +1,2 @@
 # issue-tracker
-
-<img
-src=“issue-tracker/issuetracker.png”
-raw=true
-alt=“Subject Pronouns”
-style=“margin-right: 10px;”
-/>
+![alt text](C:\Users\Akib\Desktop\issue-tracker\issuetracker.png)
