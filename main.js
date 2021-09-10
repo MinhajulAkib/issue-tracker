@@ -23,7 +23,7 @@ function submitIssue(e) {
 
 const closeIssue = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
-  const currentIssue = issues.find(issue => issue.id === id);
+  const currentIssue = issues.find(issue => issue.id == id);
   currentIssue.status = 'Closed';
   localStorage.setItem('issues', JSON.stringify(issues));
   fetchIssues();
@@ -31,7 +31,7 @@ const closeIssue = id => {
 
 const deleteIssue = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
-  const remainingIssues = issues.filter(issue => issue.id == id )
+  const remainingIssues = issues.filter(issue => issue.id != id);
   localStorage.setItem('issues', JSON.stringify(remainingIssues));
 }
 
@@ -40,17 +40,25 @@ const fetchIssues = () => {
   const issuesList = document.getElementById('issuesList');
   issuesList.innerHTML = '';
 
-  for (var i = 0; i < issues.length; i++) {
-    const {id, description, severity, assignedTo, status} = issues[i];
+  for (var i = 0; i < issues.length ; i++) {
+    const { id, description, severity, assignedTo, status } = issues[i];
 
-    issuesList.innerHTML +=   `<div class="well">
+    issuesList.innerHTML += `<div class="well">
                               <h6>Issue ID: ${id} </h6>
                               <p><span class="label label-info"> ${status} </span></p>
                               <h3> ${description} </h3>
                               <p><span class="glyphicon glyphicon-time"></span> ${severity}</p>
                               <p><span class="glyphicon glyphicon-user"></span> ${assignedTo}</p>
-                              <a href="#" onclick="setStatusClosed(${id})" class="btn btn-warning">Close</a>
+                              <a href="#" onclick="closeIssue(${id})" class="btn btn-warning">Close</a>
                               <a href="#" onclick="deleteIssue(${id})" class="btn btn-danger">Delete</a>
                               </div>`;
   }
 }
+
+document.getElementById('issuesList').addEventListener('click', event => {
+  const targetText = event.target.innerText.toLowerCase();
+  switch (targetText) {
+    case 'delete':
+      event.target.parentNode.style.display = 'none';
+  }
+})
