@@ -1,2 +1,2 @@
 # issue-tracker
-![alt text](C:\Users\Akib\Desktop\issue-tracker\issuetracker.png)
+![alt text](https://raw.githubusercontent.com/MinhajulAkib/issuetracker.png)
